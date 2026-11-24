@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // --- 2. ANIMAÇÃO DE DIGITAÇÃO (HERO E GALERIA 3D) ---
   const typewriterTargets = document.querySelectorAll('#typewriter-content, .carousel-3d__typewriter, [data-phrases]');
   typewriterTargets.forEach((typewriterTarget) => {
+    if (typewriterTarget.closest('[hidden]')) return;
     const rawPhrases = typewriterTarget.getAttribute('data-phrases');
     const phrases = rawPhrases
       ? rawPhrases.split('|').map((item) => item.trim()).filter(Boolean)
@@ -152,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const targetElem = document.querySelector(targetId);
         if (targetElem) {
           e.preventDefault();
-          lenis.scrollTo(targetElem, { offset: -74 });
+          lenis.scrollTo(targetElem, { offset: targetId === '#ecossistema' ? 0 : -74 });
         }
       });
     });
@@ -427,6 +428,192 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // --- 5.1 CARROSSEL CONTÍNUO REVERSO COM ARRASTO (BORA BEACH) ---
+  (function initBoraMarquee() {
+    const marquee = document.getElementById('bora-galeria');
+    if (!marquee) return;
+
+    const track = marquee.querySelector('.bora-marquee__track');
+    if (!track) return;
+
+    let halfWidth = 0;
+    let offsetX = 0;
+    let isInView = true;
+    let isHovered = false;
+    let pointerId = null;
+    let startX = 0;
+    let startY = 0;
+    let lastX = 0;
+    let lastMoveTime = 0;
+    let isDragging = false;
+    let touchDecided = false;
+    let inertiaVelocity = 0;
+    let lastRafTime = performance.now();
+
+    const baseSpeed = prefersReducedMotion ? 0 : 48; // px/s da esquerda para a direita (sentido contrário ao ticker)
+
+    function wrapOffset(val, span) {
+      if (span <= 0) return 0;
+      let wrapped = val % span;
+      if (wrapped >= 0) wrapped -= span;
+      if (wrapped < -span) wrapped += span;
+      return wrapped;
+    }
+
+    function applyTransform() {
+      track.style.transform = `translate3d(${offsetX.toFixed(2)}px, 0, 0)`;
+    }
+
+    function measureTrack() {
+      const prevHalf = halfWidth;
+      const measured = track.scrollWidth / 2;
+      if (measured > 0) {
+        halfWidth = measured;
+        if (prevHalf > 0) {
+          offsetX = wrapOffset((offsetX / prevHalf) * halfWidth, halfWidth);
+        } else {
+          offsetX = -halfWidth;
+        }
+        applyTransform();
+      }
+    }
+
+    measureTrack();
+
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(measureTrack);
+      ro.observe(track);
+    } else {
+      window.addEventListener('resize', measureTrack, { passive: true });
+    }
+
+    track.querySelectorAll('img').forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener('load', measureTrack, { once: true });
+      }
+    });
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isInView = entry.isIntersecting;
+          });
+        },
+        { rootMargin: '120px 0px' }
+      );
+      io.observe(marquee);
+    }
+
+    marquee.addEventListener('pointerenter', (e) => {
+      if (e.pointerType === 'mouse') isHovered = true;
+    });
+
+    marquee.addEventListener('pointerleave', (e) => {
+      if (e.pointerType === 'mouse') isHovered = false;
+    });
+
+    marquee.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      lastX = e.clientX;
+      lastMoveTime = performance.now();
+      inertiaVelocity = 0;
+
+      if (e.pointerType === 'mouse') {
+        isDragging = true;
+        touchDecided = true;
+        marquee.classList.add('is-dragging');
+        if (marquee.setPointerCapture) {
+          try { marquee.setPointerCapture(pointerId); } catch (_) {}
+        }
+      } else {
+        isDragging = false;
+        touchDecided = false;
+      }
+    });
+
+    marquee.addEventListener('pointermove', (e) => {
+      if (e.pointerId !== pointerId) return;
+
+      const totalDx = e.clientX - startX;
+      const totalDy = e.clientY - startY;
+
+      if (!touchDecided) {
+        if (Math.abs(totalDx) < 6 && Math.abs(totalDy) < 6) return;
+        if (Math.abs(totalDy) > Math.abs(totalDx)) {
+          // Usuário está rolando a página verticalmente
+          pointerId = null;
+          return;
+        }
+        touchDecided = true;
+        isDragging = true;
+        marquee.classList.add('is-dragging');
+        lastX = e.clientX;
+        lastMoveTime = performance.now();
+        if (marquee.setPointerCapture) {
+          try { marquee.setPointerCapture(pointerId); } catch (_) {}
+        }
+      }
+
+      if (!isDragging) return;
+
+      const now = performance.now();
+      const dt = Math.max(0.004, (now - lastMoveTime) / 1000);
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+      lastMoveTime = now;
+
+      offsetX = wrapOffset(offsetX + dx, halfWidth);
+      applyTransform();
+
+      const instantVelocity = Math.max(-1400, Math.min(1400, dx / dt));
+      inertiaVelocity = inertiaVelocity * 0.45 + instantVelocity * 0.55;
+    });
+
+    function endDrag(e) {
+      if (e.pointerId !== pointerId) return;
+      if (isDragging && marquee.releasePointerCapture) {
+        try { marquee.releasePointerCapture(pointerId); } catch (_) {}
+      }
+      pointerId = null;
+      isDragging = false;
+      touchDecided = false;
+      marquee.classList.remove('is-dragging');
+    }
+
+    marquee.addEventListener('pointerup', endDrag);
+    marquee.addEventListener('pointercancel', endDrag);
+
+    function tick(now) {
+      const dt = Math.min(0.05, Math.max(0, (now - lastRafTime) / 1000));
+      lastRafTime = now;
+
+      if (halfWidth > 0 && !document.hidden && isInView && !isDragging) {
+        let stepVelocity = 0;
+
+        if (Math.abs(inertiaVelocity) > 2) {
+          stepVelocity += inertiaVelocity;
+          inertiaVelocity *= Math.pow(0.04, dt);
+          if (Math.abs(inertiaVelocity) <= 2) inertiaVelocity = 0;
+        } else if (!isHovered && baseSpeed > 0) {
+          stepVelocity += baseSpeed;
+        }
+
+        if (stepVelocity !== 0) {
+          offsetX = wrapOffset(offsetX + stepVelocity * dt, halfWidth);
+          applyTransform();
+        }
+      }
+
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
   // --- 6. CONTROLE DE VÍDEOS EM LOOP POR VIEWPORT ---
   const loopVideos = Array.from(
     document.querySelectorAll('video[autoplay], video[data-autoplay="true"], video.loop-video')
@@ -434,13 +621,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const videoInView = new WeakMap();
 
   function canVideoPlay(video) {
-    if (document.hidden || !videoInView.get(video)) return false;
-    const ecoCard = video.closest('.eco-card');
-    if (ecoCard) {
-      const op = parseFloat(getComputedStyle(ecoCard).opacity);
-      if (!Number.isNaN(op) && op <= 0.05) return false;
-    }
-    return true;
+    return !document.hidden && Boolean(videoInView.get(video));
   }
 
   function syncVideoPlayback(video) {
@@ -1396,9 +1577,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const mobileAtLoad = isMobileViewport();
     const revealSelectors = [
       '.section-header',
-      ...(mobileAtLoad ? [] : ['.flags-bridge__lockup']),
+      '.identity-tabs',
       '.final-cta-box',
-      '.feature-split',
+      '.feature-card',
+      '.trajectory-video-card',
       '.manifesto-block',
       '.sector-matrix',
       '.contact-form'
@@ -1846,9 +2028,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const mm = gsap.matchMedia();
     mm.add('(min-width: 769px) and (hover: hover)', () => {
-      document.querySelectorAll('.feature-split').forEach((section) => {
-        const media = section.querySelector('.feature-card__parallax-media');
-        const clipBox = section.querySelector('.feature-card__media-inner');
+      document.querySelectorAll('.feature-card').forEach((card) => {
+        const media = card.querySelector('.feature-card__parallax-media');
+        const clipBox = card.querySelector('.feature-card__media-inner');
         if (!media || !clipBox) return;
 
         gsap.fromTo(
@@ -1870,100 +2052,355 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   })();
 
-  // --- 15. PAINÉIS DO ECOSSISTEMA (.eco-section) ---
-  (function initEcosystemPanels() {
-    const panelsContainer = document.getElementById('ecoPanels');
-    if (!panelsContainer || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  // --- 14.1 TIMELINE LATERAL ANIMADA (#nosso-proposito) ---
+  (function initFeatureTimeline() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined' || prefersReducedMotion) return;
+    gsap.registerPlugin(ScrollTrigger);
 
-    const panels = Array.from(panelsContainer.querySelectorAll('.eco-panel'));
-    if (!panels.length) return;
+    const mm = gsap.matchMedia();
+    mm.add('(min-width: 1025px)', () => {
+      const propositoSection = document.getElementById('nosso-proposito');
+      if (!propositoSection) return;
+
+      const cards = Array.from(propositoSection.querySelectorAll('.feature-card'));
+      const fills = Array.from(propositoSection.querySelectorAll('.feature-timeline__fill'));
+      const years = Array.from(propositoSection.querySelectorAll('.feature-timeline__year'));
+
+      if (cards.length < 3 || fills.length < 2 || years.length < 3) return;
+
+      years[0].classList.add('is-active');
+
+      // Segmento 1: 2019 (Card 1) -> 2020 (Card 2)
+      gsap.fromTo(
+        fills[0],
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: cards[0],
+            start: 'center 65%',
+            endTrigger: cards[1],
+            end: 'center 55%',
+            scrub: 0.4,
+            onUpdate: (self) => {
+              years[1].classList.toggle('is-active', self.progress >= 0.88);
+            }
+          }
+        }
+      );
+
+      // Segmento 2: 2020 (Card 2) -> 2023 (Card 3)
+      gsap.fromTo(
+        fills[1],
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: cards[1],
+            start: 'center 55%',
+            endTrigger: cards[2],
+            end: 'center 55%',
+            scrub: 0.4,
+            onUpdate: (self) => {
+              years[2].classList.toggle('is-active', self.progress >= 0.88);
+            }
+          }
+        }
+      );
+    });
+  })();
+
+  // --- 15. ECOSSISTEMA DE EMPRESAS — SWIPE SLIDER TELA CHEIA (#ecossistema) ---
+  (function initEcosystemSwipeSlider() {
+    const section = document.getElementById('ecossistema');
+    if (!section) return;
+
+    const slides = Array.from(section.querySelectorAll('.eco-swipe__slide'));
+    const outerWrappers = Array.from(section.querySelectorAll('.eco-swipe__outer'));
+    const innerWrappers = Array.from(section.querySelectorAll('.eco-swipe__inner'));
+    const bgs = Array.from(section.querySelectorAll('.eco-swipe__bg'));
+    const contents = Array.from(section.querySelectorAll('.eco-swipe__content'));
+    const currentCounters = Array.from(section.querySelectorAll('.eco-swipe__counter-current'));
+    const nextBtn = section.querySelector('.eco-swipe__arrow--next');
+    const prevBtn = section.querySelector('.eco-swipe__arrow--prev');
+    const liveStatus = document.getElementById('ecoSwipeStatus');
+
+    if (!slides.length) return;
+
+    let currentActiveIndex = 0;
+
+    function updateSlideIndicators(activeIdx, announce) {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('is-active', idx === activeIdx);
+      });
+      const formattedCounter = String(activeIdx + 1).padStart(2, '0');
+      currentCounters.forEach((counter) => {
+        counter.textContent = formattedCounter;
+      });
+      if (announce && liveStatus) {
+        const label = slides[activeIdx].getAttribute('aria-label') || '';
+        if (label) liveStatus.textContent = label;
+      }
+    }
+
+    // Fallback estático quando prefers-reduced-motion está ativo ou GSAP indisponível
+    if (prefersReducedMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      const goStatic = (targetIdx) => {
+        const wrapped = ((targetIdx % slides.length) + slides.length) % slides.length;
+        if (wrapped === currentActiveIndex) return;
+        currentActiveIndex = wrapped;
+        updateSlideIndicators(wrapped, true);
+      };
+      if (nextBtn) nextBtn.addEventListener('click', () => goStatic(currentActiveIndex + 1));
+      if (prevBtn) prevBtn.addEventListener('click', () => goStatic(currentActiveIndex - 1));
+      return;
+    }
 
     gsap.registerPlugin(ScrollTrigger);
 
-    if (prefersReducedMotion) return;
+    function resetSlidesState() {
+      currentActiveIndex = 0;
+      updateSlideIndicators(0, false);
+      slides.forEach((slide, i) => {
+        gsap.set(slide, { zIndex: i + 1, autoAlpha: 1 });
+        if (i === 0) {
+          gsap.set(outerWrappers[i], { yPercent: 0 });
+          gsap.set(innerWrappers[i], { yPercent: 0 });
+          gsap.set(bgs[i], { yPercent: 0, scale: 1 });
+          gsap.set(contents[i], { y: 0, opacity: 1 });
+        } else {
+          gsap.set(outerWrappers[i], { yPercent: 100 });
+          gsap.set(innerWrappers[i], { yPercent: -100 });
+          gsap.set(bgs[i], { yPercent: 14, scale: 1.1 });
+          gsap.set(contents[i], { y: 36, opacity: 0 });
+        }
+      });
+    }
+
+    function buildTimeline(paused) {
+      resetSlidesState();
+      const masterTL = gsap.timeline({
+        defaults: { ease: 'none' },
+        paused,
+      });
+
+      const slideRestTimes = [0];
+      const transMidTimes = [0];
+
+      masterTL.to({}, { duration: 0.3 });
+
+      for (let i = 1; i < slides.length; i++) {
+        const startTime = masterTL.duration();
+        transMidTimes[i] = startTime + 0.5;
+
+        masterTL
+          .fromTo(
+            outerWrappers[i],
+            { yPercent: 100 },
+            { yPercent: 0, duration: 1, ease: 'power2.inOut', immediateRender: false },
+            startTime
+          )
+          .fromTo(
+            innerWrappers[i],
+            { yPercent: -100 },
+            { yPercent: 0, duration: 1, ease: 'power2.inOut', immediateRender: false },
+            startTime
+          )
+          .fromTo(
+            bgs[i],
+            { yPercent: 14, scale: 1.1 },
+            { yPercent: 0, scale: 1, duration: 1, ease: 'power2.out', immediateRender: false },
+            startTime
+          )
+          .fromTo(
+            bgs[i - 1],
+            { yPercent: 0, scale: 1 },
+            { yPercent: -14, scale: 1.05, duration: 1, ease: 'power2.inOut', immediateRender: false },
+            startTime
+          )
+          .fromTo(
+            contents[i - 1],
+            { y: 0, opacity: 1 },
+            { y: -32, opacity: 0, duration: 0.42, ease: 'power2.in', immediateRender: false },
+            startTime
+          )
+          .fromTo(
+            contents[i],
+            { y: 36, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.52, ease: 'power2.out', immediateRender: false },
+            startTime + 0.44
+          );
+
+        const holdDuration = i === slides.length - 1 ? 0.45 : 0.35;
+        masterTL.to({}, { duration: holdDuration }, startTime + 1);
+        slideRestTimes[i] = startTime + 1 + holdDuration * 0.5;
+      }
+
+      const applyActiveFromTime = (currentTime, announce) => {
+        let activeIdx = 0;
+        for (let i = 1; i < slides.length; i++) {
+          if (currentTime >= transMidTimes[i]) {
+            activeIdx = i;
+          } else {
+            break;
+          }
+        }
+        if (activeIdx !== currentActiveIndex) {
+          currentActiveIndex = activeIdx;
+          updateSlideIndicators(activeIdx, announce);
+        }
+      };
+
+      return { masterTL, slideRestTimes, applyActiveFromTime };
+    }
+
+    let navigateToSlide = () => {};
+    let getCurrentSlideIndex = () => currentActiveIndex;
 
     const mm = gsap.matchMedia();
 
-    mm.add('(min-width: 1025px)', () => {
-      panels.forEach((panel, i) => {
-        panel.style.zIndex = String(i + 1);
-        const card = panel.querySelector('.eco-card');
-        if (!card) return;
+    mm.add('(min-width: 769px)', () => {
+      const { masterTL, slideRestTimes, applyActiveFromTime } = buildTimeline(false);
+      const getTotalScroll = () => (slides.length - 1) * Math.max(600, Math.round(window.innerHeight * 0.78));
 
-        // Painéis 0..N-2 fixam sem pinSpacing (com overscroll caso maiores que a viewport)
-        // enquanto o painel seguinte sobe e sobrepõe o anterior
-        if (i < panels.length - 1) {
-          const nextPanel = panels[i + 1];
-          const pinStart = () => (panel.offsetHeight <= window.innerHeight ? 'top top' : 'bottom bottom');
-          const nextLand = () => (nextPanel.offsetHeight <= window.innerHeight ? 'top top' : 'bottom bottom');
-
-          ScrollTrigger.create({
-            trigger: panel,
-            start: pinStart,
-            endTrigger: nextPanel,
-            end: nextLand,
-            pin: true,
-            pinSpacing: false,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            refreshPriority: 20
-          });
-
-          // Enquanto o painel de baixo sobe, o de cima recua em escala e profundidade para trás dele
-          const depthTl = gsap.timeline({
-            scrollTrigger: {
-              trigger: nextPanel,
-              start: 'top bottom',
-              end: nextLand,
-              scrub: true,
-              invalidateOnRefresh: true,
-              refreshPriority: 19,
-              onUpdate: () => {
-                const panelVideo = card.querySelector('video');
-                if (panelVideo) syncVideoPlayback(panelVideo);
-              }
-            }
-          });
-
-          depthTl
-            .fromTo(
-              card,
-              {
-                scale: 1,
-                y: 0,
-                opacity: 1,
-                filter: 'brightness(1)'
-              },
-              {
-                scale: 0.9,
-                y: 12,
-                opacity: 0.35,
-                filter: 'brightness(0.48)',
-                duration: 0.88,
-                ease: 'none'
-              },
-              0
-            )
-            .to(
-              card,
-              {
-                scale: 0.87,
-                opacity: 0,
-                duration: 0.12,
-                ease: 'none'
-              },
-              0.88
-            );
-        }
+      const swipeST = ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: () => '+=' + getTotalScroll(),
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        refreshPriority: 20,
+        animation: masterTL,
+        scrub: 0.65,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          applyActiveFromTime(self.progress * masterTL.duration(), true);
+        },
       });
 
+      getCurrentSlideIndex = () => currentActiveIndex;
+      navigateToSlide = (targetIdx) => {
+        const wrapped = ((targetIdx % slides.length) + slides.length) % slides.length;
+        const totalDur = masterTL.duration();
+        const targetProgress = totalDur > 0 ? slideRestTimes[wrapped] / totalDur : 0;
+        const targetY = swipeST.start + targetProgress * (swipeST.end - swipeST.start);
+
+        if (window.__lenis) {
+          window.__lenis.scrollTo(targetY, {
+            duration: 0.9,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        } else {
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      };
+
+      const refreshEcoSwipe = () => {
+        ScrollTrigger.sort();
+        ScrollTrigger.refresh();
+      };
+      setTimeout(refreshEcoSwipe, 120);
+
       return () => {
-        panels.forEach((panel) => {
-          panel.style.zIndex = '';
-          const card = panel.querySelector('.eco-card');
-          if (card) gsap.set(card, { clearProps: 'all' });
+        swipeST.kill();
+        masterTL.kill();
+      };
+    });
+
+    mm.add('(max-width: 768px)', () => {
+      const { masterTL, slideRestTimes, applyActiveFromTime } = buildTimeline(true);
+      let mobileTargetIndex = 0;
+      let mobileNavTween = null;
+
+      getCurrentSlideIndex = () => mobileTargetIndex;
+      navigateToSlide = (targetIdx) => {
+        const wrapped = ((targetIdx % slides.length) + slides.length) % slides.length;
+        if (wrapped === mobileTargetIndex) return;
+        mobileTargetIndex = wrapped;
+        if (mobileNavTween) mobileNavTween.kill();
+        mobileNavTween = gsap.to(masterTL, {
+          time: slideRestTimes[wrapped],
+          duration: 0.85,
+          ease: 'power2.inOut',
+          overwrite: true,
+          onUpdate: () => applyActiveFromTime(masterTL.time(), false),
+          onComplete: () => {
+            applyActiveFromTime(masterTL.time(), true);
+            mobileNavTween = null;
+          },
         });
       };
+
+      return () => {
+        if (mobileNavTween) mobileNavTween.kill();
+        masterTL.kill();
+      };
+    });
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigateToSlide(getCurrentSlideIndex() + 1);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigateToSlide(getCurrentSlideIndex() - 1);
+      });
+    }
+
+    if (typeof Observer !== 'undefined' || (typeof ScrollTrigger !== 'undefined' && ScrollTrigger.observe)) {
+      const obs = typeof Observer !== 'undefined' ? Observer : ScrollTrigger;
+      let lastSwipeAt = 0;
+      const swipeGuard = (fn) => () => {
+        const now = Date.now();
+        if (now - lastSwipeAt < 450) return;
+        lastSwipeAt = now;
+        fn();
+      };
+      obs.create({
+        target: section,
+        ignore: '.eco-swipe__nav-wrap, .eco-swipe__bottom, .eco-swipe__cta, .eco-swipe__arrow',
+        type: 'touch,pointer',
+        tolerance: 40,
+        preventDefault: false,
+        onLeft: swipeGuard(() => navigateToSlide(getCurrentSlideIndex() + 1)),
+        onRight: swipeGuard(() => navigateToSlide(getCurrentSlideIndex() - 1)),
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.target && e.target.closest('a, input, textarea, select')) return;
+      const rect = section.getBoundingClientRect();
+      const isInViewport = rect.top <= 10 && rect.bottom >= window.innerHeight - 10;
+      const focusInside = section.contains(document.activeElement);
+      if (!isInViewport && !focusInside) return;
+
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        navigateToSlide(getCurrentSlideIndex() + 1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateToSlide(getCurrentSlideIndex() - 1);
+      }
+    });
+
+    section.querySelectorAll('.eco-swipe__bg-img').forEach((img) => {
+      if (!img.complete) {
+        img.addEventListener(
+          'load',
+          () => {
+            ScrollTrigger.sort();
+            ScrollTrigger.refresh();
+          },
+          { once: true }
+        );
+      }
     });
   })();
 
@@ -2119,6 +2556,149 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           });
         });
+      });
+    }
+  })();
+
+  /* ==========================================================================
+     19. ABAS SOBRE A VYVA (.identity-tabs)
+     ========================================================================== */
+  document.querySelectorAll('.identity-tabs').forEach((tabsRoot) => {
+    const tabs = Array.from(tabsRoot.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(tabsRoot.querySelectorAll('[role="tabpanel"]'));
+    if (!tabs.length || !panels.length) return;
+
+    const activateTab = (targetTab, { moveFocus = false, scrollTab = true } = {}) => {
+      const targetPanelId = targetTab.dataset.tabTarget;
+
+      tabs.forEach((tab) => {
+        const isSelected = tab === targetTab;
+        tab.setAttribute('aria-selected', String(isSelected));
+        tab.tabIndex = isSelected ? 0 : -1;
+      });
+
+      panels.forEach((panel) => {
+        const isSelected = panel.id === targetPanelId;
+        panel.setAttribute('aria-hidden', String(!isSelected));
+        panel.inert = !isSelected;
+        if (isSelected) {
+          panel.tabIndex = 0;
+        } else {
+          panel.removeAttribute('tabindex');
+        }
+      });
+
+      if (scrollTab) {
+        targetTab.scrollIntoView({ block: 'nearest', inline: 'nearest', container: 'nearest' });
+      }
+      if (moveFocus) {
+        targetTab.focus();
+      }
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex = null;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = tabs.length - 1;
+
+        if (nextIndex !== null) {
+          event.preventDefault();
+          activateTab(tabs[nextIndex], { moveFocus: true });
+        }
+      });
+    });
+
+    panels.forEach((panel) => {
+      panel.addEventListener('beforematch', () => {
+        const matchingTab = tabs.find((tab) => tab.dataset.tabTarget === panel.id);
+        if (matchingTab) activateTab(matchingTab);
+      });
+    });
+  });
+
+  // --- 18. VÍDEO INSTITUCIONAL: NOSSA TRAJETÓRIA (<dialog>) ---
+  (function initTrajectoryVideoModal() {
+    const card = document.getElementById('trajectoryVideoCard');
+    const watchBtn = document.getElementById('trajectoryWatchBtn');
+    const dialog = document.getElementById('trajectoryVideoDialog');
+    const frameWrap = document.getElementById('trajectoryVideoFrameWrap');
+
+    if (!card || !dialog || !frameWrap) return;
+
+    const youtubeId = card.getAttribute('data-youtube-id') || 'IXxxxcrm32Y';
+
+    function mountEmbed() {
+      if (frameWrap.querySelector('iframe')) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(youtubeId)}?autoplay=1&rel=0`;
+      iframe.title = 'Conheça nossa trajetória — Vídeo Institucional VYVA';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      frameWrap.appendChild(iframe);
+    }
+
+    function onDialogOpened() {
+      mountEmbed();
+      if (window.__lenis && typeof window.__lenis.stop === 'function') {
+        window.__lenis.stop();
+      }
+    }
+
+    function openDialog() {
+      if (!dialog.open) {
+        dialog.showModal();
+      }
+      onDialogOpened();
+    }
+
+    // Garante carregamento do vídeo tanto via command="show-modal" nativo quanto via fallback
+    const openObserver = new MutationObserver(() => {
+      if (dialog.open) {
+        onDialogOpened();
+      }
+    });
+    openObserver.observe(dialog, { attributes: true, attributeFilter: ['open'] });
+
+    if (watchBtn && !('commandForElement' in HTMLButtonElement.prototype)) {
+      watchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openDialog();
+      });
+    }
+
+    card.addEventListener('click', (e) => {
+      if (e.target && e.target.closest('button')) return;
+      openDialog();
+    });
+
+    dialog.addEventListener('close', () => {
+      frameWrap.innerHTML = '';
+      dialog.returnValue = '';
+      if (window.__lenis && typeof window.__lenis.start === 'function') {
+        window.__lenis.start();
+      }
+    });
+
+    // Fallback de light-dismiss para navegadores sem suporte a closedby="any"
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      let pressedOutside = false;
+      const isOutside = (e) => {
+        const r = dialog.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      dialog.addEventListener('pointerdown', (e) => {
+        pressedOutside = isOutside(e);
+      });
+      dialog.addEventListener('pointerup', (e) => {
+        if (pressedOutside && isOutside(e)) {
+          dialog.close();
+        }
       });
     }
   })();

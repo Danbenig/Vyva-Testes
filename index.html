@@ -46,7 +46,6 @@
 
     <nav class="navbar__expand" id="navbarExpand" aria-label="Menu Principal" aria-hidden="true">
       <div class="container navbar__expand-inner">
-        <span class="navbar__expand-eyebrow">Navegação // VYVA</span>
         <ul class="navbar__expand-list">
           <li class="navbar__expand-item"><a href="index.html" class="navbar__expand-link is-active"><span class="navbar__expand-index">01</span><span class="navbar__expand-label">Home</span><span class="navbar__expand-arrow" aria-hidden="true">↗</span></a></li>
           <li class="navbar__expand-item"><a href="vipstrategy.html" class="navbar__expand-link"><span class="navbar__expand-index">02</span><span class="navbar__expand-label">Vip Strategy</span><span class="navbar__expand-arrow" aria-hidden="true">↗</span></a></li>
@@ -56,7 +55,6 @@
           <li class="navbar__expand-item"><a href="contact.html" class="navbar__expand-link"><span class="navbar__expand-index">06</span><span class="navbar__expand-label">Contato</span><span class="navbar__expand-arrow" aria-hidden="true">↗</span></a></li>
         </ul>
         <div class="navbar__expand-footer">
-          <span>Grupo VYVA // Ecossistema Integrado</span>
           <a href="https://api.whatsapp.com/send/?phone=5573998130646&amp;text=Ola%2C+vim+pelo+e+gostaria+de+tirar+algumas+d%C3%BAvidas.&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener noreferrer" class="navbar__expand-wa">WhatsApp ↗</a>
         </div>
       </div>
@@ -108,7 +106,7 @@
             </div>
           </div>
           <div class="logo-title">
-            <div class="text-block">Marketing, experiências, hospitalidade,<br>short stay e manutenção — EUA × Brasil.</div>
+            <div class="text-block">Uma plataforma internacional<br>construída a partir da operação.</div>
           </div>
           <div class="logo-side right">
             <div class="looping-logo-wrapper right">
@@ -139,84 +137,89 @@
       <div class="hero-bottom">
         <div class="content-grid">
           <a href="#ecossistema" class="scroll-link w-inline-block"><img src="images/arrow-down24x242x-2.svg" loading="lazy" alt="" class="scroll-arrow left">
-            <div>Empresas do grupo</div><img src="images/arrow-down24x242x-2.svg" loading="lazy" alt="" class="scroll-arrow right">
+            <div>Conheça a VYVA</div><img src="images/arrow-down24x242x-2.svg" loading="lazy" alt="" class="scroll-arrow right">
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Conexão EUA × Brasil -->
-    <section class="section-view flags-bridge" aria-label="Conexão Estados Unidos e Brasil">
+    <!-- Sobre a VYVA (Identidade, História e Negócio) -->
+    <section id="sobre-vyva" class="section-view identity-showcase" aria-label="Sobre a VYVA">
       <div class="container">
-        <div class="flags-bridge__lockup">
-          <!-- Bandeira EUA -->
-          <div class="flags-bridge__flag flags-bridge__flag--usa">
-            <img src="images/flag-usa-arrow.avif" alt="Bandeira dos Estados Unidos" width="684" height="309">
+        <div class="identity-tabs">
+          <div class="identity-tabs__list" role="tablist" aria-label="Sobre a VYVA">
+            <button
+              type="button"
+              id="tab-identidade"
+              class="identity-tabs__badge"
+              role="tab"
+              aria-selected="true"
+              tabindex="0"
+              data-tab-target="panel-identidade"
+            ><span class="link-rainbow">Nossa Identidade</span></button>
+            <button
+              type="button"
+              id="tab-historia"
+              class="identity-tabs__badge"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              data-tab-target="panel-historia"
+            ><span class="link-rainbow">Nossa História</span></button>
+            <button
+              type="button"
+              id="tab-negocio"
+              class="identity-tabs__badge"
+              role="tab"
+              aria-selected="false"
+              tabindex="-1"
+              data-tab-target="panel-negocio"
+            ><span class="link-rainbow">Nosso Negócio</span></button>
           </div>
 
-          <!-- Bandeira Brasil -->
-          <div class="flags-bridge__flag flags-bridge__flag--br">
-            <img src="images/flag-brazil-arrow.avif" alt="Bandeira do Brasil" width="684" height="309">
+          <div class="identity-tabs__panels">
+            <div
+              id="panel-identidade"
+              class="identity-tabs__panel"
+              role="tabpanel"
+              aria-labelledby="tab-identidade"
+              aria-hidden="false"
+              tabindex="0"
+            >
+              <div class="identity-tabs__content">
+                <h2 class="identity-tabs__title">Diferentes competências, uma visão de negócio.</h2>
+                <p class="identity-tabs__text">Aqui na VYVA, integramos os segmentos de Real Estate, Hospitality e Experiences, conectando conhecimento imobiliário, gestão e hospitalidade para desenvolver negócios e criar experiências de valor.</p>
+              </div>
+            </div>
+
+            <div
+              id="panel-historia"
+              class="identity-tabs__panel"
+              role="tabpanel"
+              aria-labelledby="tab-historia"
+              aria-hidden="true"
+              inert
+            >
+              <div class="identity-tabs__content">
+                <h2 class="identity-tabs__title">As raízes de uma atuação em constante expansão.</h2>
+                <p class="identity-tabs__text">Fundada em 2019, no Texas, Estados Unidos, iniciamos nossa trajetória com a PHP General Services, atendendo grandes construtoras residenciais no mercado imobiliário. Ao longo dos anos, expandimos nossa atuação para a gestão de imóveis de temporada e o desenvolvimento da VIP Strategy, voltada ao marketing, eventos e experiências. Assim, consolidamos os três pilares que fundamentam nosso negócio.</p>
+              </div>
+            </div>
+
+            <div
+              id="panel-negocio"
+              class="identity-tabs__panel"
+              role="tabpanel"
+              aria-labelledby="tab-negocio"
+              aria-hidden="true"
+              inert
+            >
+              <div class="identity-tabs__content">
+                <h2 class="identity-tabs__title">Conectando diferentes mercados e oportunidades.</h2>
+                <p class="identity-tabs__text">Hoje, no Brasil, manifestamos essa experiência em diferentes iniciativas, como a VYVA Homes, dedicada à gestão de imóveis para hospedagem, e o Bora Beach, projeto que conecta nossos três pilares de atuação.</p>
+              </div>
+            </div>
           </div>
-
-          <!-- Linhas e Conector Central -->
-          <svg class="flags-bridge__svg" viewBox="172 29 680 185" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <!-- Gradiente do conector central -->
-              <linearGradient id="xFillGrad" x1="468" y1="71" x2="556" y2="172" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#ff7a29" />
-                <stop offset="38%" stop-color="#f27427" />
-                <stop offset="50%" stop-color="#ffb17a" />
-                <stop offset="62%" stop-color="#f27427" />
-                <stop offset="100%" stop-color="#e8590c" />
-              </linearGradient>
-
-              <!-- Gradientes dos feixes de luz -->
-              <linearGradient id="lightingBeamLeft" x1="276" y1="41" x2="475" y2="202" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#e8590c" stop-opacity="0.25" />
-                <stop offset="45%" stop-color="#ff8c32" stop-opacity="0.95" />
-                <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
-                <stop offset="55%" stop-color="#ff8c32" stop-opacity="0.95" />
-                <stop offset="100%" stop-color="#e8590c" stop-opacity="0.25" />
-              </linearGradient>
-
-              <linearGradient id="lightingBeamRight" x1="748" y1="41" x2="549" y2="202" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#e8590c" stop-opacity="0.25" />
-                <stop offset="45%" stop-color="#ff8c32" stop-opacity="0.95" />
-                <stop offset="50%" stop-color="#ffffff" stop-opacity="1" />
-                <stop offset="55%" stop-color="#ff8c32" stop-opacity="0.95" />
-                <stop offset="100%" stop-color="#e8590c" stop-opacity="0.25" />
-              </linearGradient>
-
-              <linearGradient id="lightingBeamX" x1="468" y1="71" x2="556" y2="172" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#ff7a29" />
-                <stop offset="50%" stop-color="#ffffff" />
-                <stop offset="100%" stop-color="#e8590c" />
-              </linearGradient>
-            </defs>
-
-            <!-- Linha esquerda -->
-            <path class="flags-bridge__line-base" d="M 276 41 L 426 41 L 475 121.5 L 426 202 L 276 202" />
-            <path class="flags-bridge__line-glow flags-bridge__line-glow--left" d="M 276 41 L 426 41 L 475 121.5 L 426 202 L 276 202" pathLength="100" />
-            <path class="flags-bridge__line-apex flags-bridge__line-apex--left" d="M 276 41 L 426 41 L 475 121.5 L 426 202 L 276 202" pathLength="100" />
-
-            <!-- Linha direita -->
-            <path class="flags-bridge__line-base" d="M 748 41 L 598 41 L 549 121.5 L 598 202 L 748 202" />
-            <path class="flags-bridge__line-glow flags-bridge__line-glow--right" d="M 748 41 L 598 41 L 549 121.5 L 598 202 L 748 202" pathLength="100" />
-            <path class="flags-bridge__line-apex flags-bridge__line-apex--right" d="M 748 41 L 598 41 L 549 121.5 L 598 202 L 748 202" pathLength="100" />
-
-            <!-- Conector central -->
-            <path class="flags-bridge__x-body" d="M 468 71 L 491 71 L 512 106 L 533 71 L 556 71 L 525.5 121.5 L 556 172 L 533 172 L 512 137 L 491 172 L 468 172 L 498.5 121.5 Z" />
-            <path class="flags-bridge__x-border-base" d="M 468 71 L 491 71 L 512 106 L 533 71 L 556 71 L 525.5 121.5 L 556 172 L 533 172 L 512 137 L 491 172 L 468 172 L 498.5 121.5 Z" />
-            <path class="flags-bridge__x-glow" d="M 468 71 L 491 71 L 512 106 L 533 71 L 556 71 L 525.5 121.5 L 556 172 L 533 172 L 512 137 L 491 172 L 468 172 L 498.5 121.5 Z" pathLength="100" />
-            <path class="flags-bridge__x-apex" d="M 468 71 L 491 71 L 512 106 L 533 71 L 556 71 L 525.5 121.5 L 556 172 L 533 172 L 512 137 L 491 172 L 468 172 L 498.5 121.5 Z" pathLength="100" />
-          </svg>
-        </div>
-
-        <div class="final-cta-box">
-          <span class="section-header__tag">Holding • Brasil &amp; Estados Unidos</span>
-          <h2 class="final-cta-title">Quatro empresas. Seis frentes de operação.</h2>
-          <p class="final-cta-desc">Marketing, experiências locais, hospitalidade, short stay, gestão de locação e manutenção predial.</p>
         </div>
       </div>
     </section>
@@ -234,8 +237,6 @@
         <span class="ticker-strip__sep">•</span>
         <span class="ticker-strip__item">BRAZILLIAN PARTY &amp; BÁILAME</span>
         <span class="ticker-strip__sep">•</span>
-        <span class="ticker-strip__item">TEXAS • SÃO PAULO • BAHIA</span>
-        <span class="ticker-strip__sep">•</span>
         <span class="ticker-strip__item">VIP STRATEGY</span>
         <span class="ticker-strip__sep">•</span>
         <span class="ticker-strip__item">BORA BEACH RESORT</span>
@@ -246,616 +247,29 @@
         <span class="ticker-strip__sep">•</span>
         <span class="ticker-strip__item">BRAZILLIAN PARTY &amp; BÁILAME</span>
         <span class="ticker-strip__sep">•</span>
-        <span class="ticker-strip__item">TEXAS • SÃO PAULO • BAHIA</span>
-        <span class="ticker-strip__sep">•</span>
       </div>
     </section>
 
-    <!-- Ecossistema de Empresas -->
-    <section id="ecossistema" class="section-view eco-section">
-      <div class="eco-panels" id="ecoPanels">
-        <!-- Empresa 1: VIP Strategy -->
-        <div class="eco-panel" data-eco-index="0">
-          <div class="container">
-            <article class="eco-card">
-              <span class="eco-card__corner eco-card__corner--tl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--tr" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--bl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--br" aria-hidden="true"></span>
-
-              <header class="eco-card__topbar">
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--id">
-                  <span class="eco-card__index">01</span>
-                  <span class="eco-card__brand">VIP STRATEGY • MARKETING &amp; EXPERIÊNCIAS</span>
-                </div>
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--geo">
-                  <span class="eco-card__region">TEXAS • USA &amp; BRASIL</span>
-                </div>
-              </header>
-
-              <div class="eco-card__body">
-                <div class="eco-card__media-col">
-                  <div class="eco-card__media-frame">
-                    <video class="loop-video" data-autoplay="true" muted loop playsinline preload="metadata" poster="videos/Loop-VIP-STRATEGY_poster.0000000.avif">
-                      <source src="videos/Loop-VIP-STRATEGY_webm.webm" type="video/webm">
-                    </video>
-                  </div>
-                </div>
-
-                <div class="eco-card__divider" aria-hidden="true">
-                  <span class="eco-card__divider-node"></span>
-                </div>
-
-                <div class="eco-card__content-col">
-                  <div class="eco-card__editorial">
-                    <h3 class="eco-card__heading">Marketing estratégico e eventos locais.</h3>
-                    <p class="eco-card__summary">
-                      Posicionamento, tráfego digital, ativação de venues e eventos proprietários como Brazillian Party e Báilame.
-                    </p>
-                  </div>
-
-                  <div class="eco-card__facts-wrap">
-                    <div class="eco-card__facts">
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">150+</div>
-                        <div class="eco-card__fact-desc">Eventos produzidos</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">70.000+</div>
-                        <div class="eco-card__fact-desc">Pessoas impactadas</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">Est 2022</div>
-                        <div class="eco-card__fact-desc">Texas &amp; Brasil</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="eco-card__footer">
-                    <a href="vipstrategy.html" class="link-rainbow">Conhecer Vip Strategy</a>
-                  </div>
-                </div>
-              </div>
-            </article>
+    <!-- Destaques de Atuação: Real Estate, Hospitality e Experiences -->
+    <section class="section-view feature-split" id="nosso-proposito" aria-label="Pilares de Atuação VYVA">
+      <div class="container feature-split__container">
+        <!-- Timeline Lateral (2019 - 2020 - 2023) -->
+        <aside class="feature-timeline" aria-label="Linha do tempo: 2019, 2020 e 2023">
+          <span class="feature-timeline__year is-active" data-timeline-year="2019">2019</span>
+          <div class="feature-timeline__segment" aria-hidden="true">
+            <span class="feature-timeline__fill" data-timeline-fill="0"></span>
+            <span class="feature-timeline__beam"></span>
           </div>
-        </div>
-
-        <!-- Empresa 2: Bora Beach -->
-        <div class="eco-panel" data-eco-index="1">
-          <div class="container">
-            <article class="eco-card eco-card--reverse">
-              <span class="eco-card__corner eco-card__corner--tl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--tr" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--bl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--br" aria-hidden="true"></span>
-
-              <header class="eco-card__topbar">
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--id">
-                  <span class="eco-card__index">02</span>
-                  <span class="eco-card__brand">BORA BEACH • HOSPITALIDADE &amp; RESORT</span>
-                </div>
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--geo">
-                  <span class="eco-card__region">ILHÉUS • BAHIA</span>
-                </div>
-              </header>
-
-              <div class="eco-card__body">
-                <div class="eco-card__media-col">
-                  <div class="eco-card__media-frame">
-                    <video class="loop-video" data-autoplay="true" muted loop playsinline preload="metadata" poster="videos/Loop-BORA-BEACH-1_poster.0000000.avif">
-                      <source src="videos/Loop-BORA-BEACH-1_webm.webm" type="video/webm">
-                    </video>
-                  </div>
-                </div>
-
-                <div class="eco-card__divider" aria-hidden="true">
-                  <span class="eco-card__divider-node"></span>
-                </div>
-
-                <div class="eco-card__content-col">
-                  <div class="eco-card__editorial">
-                    <h3 class="eco-card__heading">Hospitalidade e short stay frente ao mar.</h3>
-                    <p class="eco-card__summary">
-                      Complexo em ~5.000 m² com mais de 50 suítes, piscina de ~50m, Beach Club, restaurante panorâmico e galeria comercial.
-                    </p>
-                  </div>
-
-                  <div class="eco-card__facts-wrap">
-                    <div class="eco-card__facts">
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">50+</div>
-                        <div class="eco-card__fact-desc">Suítes frente ao mar</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">~5.000 m²</div>
-                        <div class="eco-card__fact-desc">Área à beira-mar</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">Est 2026</div>
-                        <div class="eco-card__fact-desc">Ilhéus, Bahia</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="eco-card__footer">
-                    <a href="bora-beach.html" class="link-rainbow">Ver Detalhes do Bora Beach</a>
-                  </div>
-                </div>
-              </div>
-            </article>
+          <span class="feature-timeline__year" data-timeline-year="2020">2020</span>
+          <div class="feature-timeline__segment" aria-hidden="true">
+            <span class="feature-timeline__fill" data-timeline-fill="1"></span>
+            <span class="feature-timeline__beam"></span>
           </div>
-        </div>
+          <span class="feature-timeline__year" data-timeline-year="2023">2023</span>
+        </aside>
 
-        <!-- Empresa 3: Vyva Homes -->
-        <div class="eco-panel" data-eco-index="2">
-          <div class="container">
-            <article class="eco-card">
-              <span class="eco-card__corner eco-card__corner--tl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--tr" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--bl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--br" aria-hidden="true"></span>
-
-              <header class="eco-card__topbar">
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--id">
-                  <span class="eco-card__index">03</span>
-                  <span class="eco-card__brand">VYVA HOMES • SHORT STAY &amp; LOCAÇÃO</span>
-                </div>
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--geo">
-                  <span class="eco-card__region">SÃO PAULO &amp; BRASIL</span>
-                </div>
-              </header>
-
-              <div class="eco-card__body">
-                <div class="eco-card__media-col">
-                  <div class="eco-card__media-frame">
-                    <video class="loop-video" data-autoplay="true" muted loop playsinline preload="metadata" poster="videos/Loop-VYVA-HOMES_poster.0000000.avif">
-                      <source src="videos/Loop-VYVA-HOMES_webm.webm" type="video/webm">
-                    </video>
-                  </div>
-                </div>
-
-                <div class="eco-card__divider" aria-hidden="true">
-                  <span class="eco-card__divider-node"></span>
-                </div>
-
-                <div class="eco-card__content-col">
-                  <div class="eco-card__editorial">
-                    <h3 class="eco-card__heading">Gestão de short stay e locação residencial.</h3>
-                    <p class="eco-card__summary">
-                      Implantação, canais Airbnb e Booking, precificação dinâmica, enxoval, limpeza e manutenção para proprietários.
-                    </p>
-                  </div>
-
-                  <div class="eco-card__facts-wrap">
-                    <div class="eco-card__facts">
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">360°</div>
-                        <div class="eco-card__fact-desc">Short e mid-stay</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">Est 2024</div>
-                        <div class="eco-card__fact-desc">Operação no Brasil</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">Brasil</div>
-                        <div class="eco-card__fact-desc">São Paulo e polos chave</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="eco-card__footer">
-                    <a href="vyva-homes.html" class="link-rainbow">Conhecer Vyva Homes</a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Empresa 4: PHP General Services -->
-        <div class="eco-panel" data-eco-index="3">
-          <div class="container">
-            <article class="eco-card eco-card--reverse">
-              <span class="eco-card__corner eco-card__corner--tl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--tr" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--bl" aria-hidden="true"></span>
-              <span class="eco-card__corner eco-card__corner--br" aria-hidden="true"></span>
-
-              <header class="eco-card__topbar">
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--id">
-                  <span class="eco-card__index">04</span>
-                  <span class="eco-card__brand">PHP GENERAL SERVICES • MANUTENÇÃO &amp; OPERAÇÃO</span>
-                </div>
-                <div class="eco-card__topbar-cell eco-card__topbar-cell--geo">
-                  <span class="eco-card__region">PLANO • TEXAS &amp; EUA</span>
-                </div>
-              </header>
-
-              <div class="eco-card__body">
-                <div class="eco-card__media-col">
-                  <div class="eco-card__media-frame">
-                    <video class="loop-video" data-autoplay="true" muted loop playsinline preload="metadata" poster="videos/Loop-PHP_poster.0000000.avif">
-                      <source src="videos/Loop-PHP_webm.webm" type="video/webm">
-                    </video>
-                  </div>
-                </div>
-
-                <div class="eco-card__divider" aria-hidden="true">
-                  <span class="eco-card__divider-node"></span>
-                </div>
-
-                <div class="eco-card__content-col">
-                  <div class="eco-card__editorial">
-                    <h3 class="eco-card__heading">Manutenção predial, turnover e logística nos EUA.</h3>
-                    <p class="eco-card__summary">
-                      Reparos B2B e residenciais, preparação de imóveis para locação, pintura e entregas white-glove com frota própria.
-                    </p>
-                  </div>
-
-                  <div class="eco-card__facts-wrap">
-                    <div class="eco-card__facts">
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">+21.217</div>
-                        <div class="eco-card__fact-desc">Ordens de serviço</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">1.000+</div>
-                        <div class="eco-card__fact-desc">Imóveis atendidos</div>
-                      </div>
-                      <div class="eco-card__fact">
-                        <div class="eco-card__fact-num fact-item__num">Est 2021</div>
-                        <div class="eco-card__fact-desc">Plano, TX &amp; rotas EUA</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="eco-card__footer">
-                    <a href="php-general-services.html" class="link-rainbow">Conhecer PHP General</a>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vitrine em Vídeo: Bora Beach -->
-    <section id="vitrine-videos" class="video-showcase">
-      <div class="video-showcase__grid">
-        <div class="video-box">
-          <div class="left-corner">
-            <div class="corner-fill"></div>
-            <div class="corner-fill horizontal"></div>
-          </div>
-          <div class="left-corner bottom">
-            <div class="corner-fill bottom"></div>
-            <div class="corner-fill horizontal bottom"></div>
-          </div>
-          <div class="left-corner bottom-right">
-            <div class="corner-fill bottom-right"></div>
-            <div class="corner-fill horizontal bottom-right"></div>
-          </div>
-          <div class="left-corner right">
-            <div class="corner-fill right"></div>
-            <div class="corner-fill horizontal right"></div>
-          </div>
-          <div class="showcase-intro showcase-intro--compact">
-            <div class="showcase-intro__inner">
-              <div class="stacked-heading centered">
-                <div class="subtitle-intro">
-                  <div class="subtitle-line left">
-                    <div class="solid-subtitle-line"></div>
-                  </div>
-                  <div class="showcase-subtitle">EST 2026 • ILHÉUS, BAHIA</div>
-                  <div class="subtitle-line">
-                    <div class="solid-subtitle-line"></div>
-                  </div>
-                </div>
-                <h1 class="showcase-intro__title">Bora Beach</h1>
-              </div>
-              <div class="showcase-intro__desc-wrap">
-                <div class="showcase-intro__desc">Short stay, beach club e gastronomia frente ao mar.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div data-poster-url="videos/background-bora-beach_poster.0000000.avif" data-video-urls="videos/background-bora-beach_webm.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="showcase-video-bg">
-        <video id="boraBeachShowcaseVideo" class="loop-video" data-autoplay="true" loop muted playsinline preload="metadata" poster="videos/background-bora-beach_poster.0000000.avif" style="background-image:url('videos/background-bora-beach_poster.0000000.avif')" data-wf-ignore="true" data-object-fit="cover">
-          <source src="videos/background-bora-beach_webm.webm" type="video/webm" data-wf-ignore="true">
-        </video>
-        <div class="showcase-overlay showcase-overlay--gradient"></div>
-      </div>
-      <div class="video-bottom">
-        <div class="video-meta">
-          <div class="video-plus">
-            <div class="plus-line"></div>
-            <div class="plus-line plus-line--vertical"></div>
-          </div>
-          <a href="bora-beach.html" class="underline-hover-link showcase-link--project w-inline-block">
-            <div class="showcase-subtitle">conheça o projeto</div>
-            <div class="hover-line light">
-              <div class="hover-line-fill light"></div>
-            </div>
-          </a>
-          <a href="contact.html" class="underline-hover-link showcase-link--contact w-inline-block">
-            <div class="showcase-subtitle">Saiba mais aqui</div>
-            <div class="hover-line">
-              <div class="hover-line-fill light"></div>
-            </div>
-          </a>
-        </div>
-        <div class="vertical-line--offset"></div>
-      </div>
-      <div class="section-cover"></div>
-    </section>
-
-    <!-- Matriz de Frentes de Operação -->
-    <section class="section-view" id="setores-atendidos">
-      <div class="container">
-        <header class="section-header">
-          <h2 class="section-title">Setores e áreas atendidas.</h2>
-          <p class="section-desc">
-            Selecione um setor para consultar o escopo atendido pelo grupo.
-          </p>
-        </header>
-
-        <div class="sector-matrix lighting-border" id="sectorMatrix">
-          <div class="sector-spotlight" aria-hidden="true"></div>
-
-          <div class="sector-tabs" role="tablist" aria-label="Setores e áreas atendidas pela VYVA">
-            <button type="button" class="sector-tab-btn" id="tab-marketing" data-unit="marketing" role="tab" aria-selected="true" tabindex="0">
-              <span class="sector-tab-btn__num">01</span>
-              <span>Marketing</span>
-            </button>
-            <button type="button" class="sector-tab-btn" id="tab-experiencias" data-unit="experiencias" role="tab" aria-selected="false" tabindex="-1">
-              <span class="sector-tab-btn__num">02</span>
-              <span>Experiências</span>
-            </button>
-            <button type="button" class="sector-tab-btn" id="tab-hospitalidade" data-unit="hospitalidade" role="tab" aria-selected="false" tabindex="-1">
-              <span class="sector-tab-btn__num">03</span>
-              <span>Hospitalidade</span>
-            </button>
-            <button type="button" class="sector-tab-btn" id="tab-locacao" data-unit="locacao" role="tab" aria-selected="false" tabindex="-1">
-              <span class="sector-tab-btn__num">04</span>
-              <span>Locação</span>
-            </button>
-            <button type="button" class="sector-tab-btn" id="tab-manutencao" data-unit="manutencao" role="tab" aria-selected="false" tabindex="-1">
-              <span class="sector-tab-btn__num">05</span>
-              <span>Manutenção</span>
-            </button>
-          </div>
-
-          <div class="sector-panels">
-            <!-- Panel 1: Marketing & Marca -->
-            <div class="sector-panel" id="panel-marketing" data-unit="marketing" role="tabpanel" aria-labelledby="tab-marketing">
-              <div class="sector-panel__info" data-index="01">
-                <div class="sector-panel__meta">
-                  <span class="sector-panel__code">01 · VIP STRATEGY</span>
-                </div>
-                <h3 class="sector-panel__title">Marcas, tráfego &amp; mídia</h3>
-                <p class="sector-panel__text">
-                  Posicionamento, tráfego pago e mídia para negócios físicos nos EUA e Brasil.
-                </p>
-              </div>
-              <div class="sector-panel__divider" aria-hidden="true"></div>
-              <div class="sector-grid">
-                <div class="sector-specs" role="group" aria-label="Áreas atendidas em Marketing">
-                  <button type="button" class="spec-card is-focused" data-detail="Restaurantes, bares, casas de entretenimento e marcas locais.">
-                    <span class="spec-item__label">Segmentos</span>
-                    <span class="spec-item__val">Gastronomia &amp; Venues</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Branding, identidade visual, produção audiovisual e tráfego pago.">
-                    <span class="spec-item__label">Entregas</span>
-                    <span class="spec-item__val">Branding &amp; Mídia</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Atuação contínua em Texas (EUA) e no mercado brasileiro.">
-                    <span class="spec-item__label">Mercados</span>
-                    <span class="spec-item__val">Texas (EUA) &amp; Brasil</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Operação ativa desde 2022 com suporte direto à demanda comercial.">
-                    <span class="spec-item__label">Operação</span>
-                    <span class="spec-item__val">VIP Strategy · Est 2022</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <div class="sector-readout">
-                  <span class="sector-readout__tag" aria-hidden="true">01 / Segmentos</span>
-                  <p class="sector-detail" aria-live="polite">
-                    Restaurantes, bares, casas de entretenimento e marcas locais.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Panel 2: Experiências Locais -->
-            <div class="sector-panel" id="panel-experiencias" data-unit="experiencias" role="tabpanel" aria-labelledby="tab-experiencias" hidden>
-              <div class="sector-panel__info" data-index="02">
-                <div class="sector-panel__meta">
-                  <span class="sector-panel__code">02 · VIP STRATEGY</span>
-                </div>
-                <h3 class="sector-panel__title">Eventos, noites &amp; venues</h3>
-                <p class="sector-panel__text">
-                  Produção de eventos, programação cultural e ativação de público presencial.
-                </p>
-              </div>
-              <div class="sector-panel__divider" aria-hidden="true"></div>
-              <div class="sector-grid">
-                <div class="sector-specs" role="group" aria-label="Áreas atendidas em Experiências Locais">
-                  <button type="button" class="spec-card is-focused" data-detail="150+ eventos produzidos e 70.000+ pessoas entre Texas e Brasil.">
-                    <span class="spec-item__label">Escala</span>
-                    <span class="spec-item__val">150+ Eventos · 70 mil+</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Live music venues, sports bars, clubs e ativações com marcas.">
-                    <span class="spec-item__label">Espaços</span>
-                    <span class="spec-item__val">Clubs, Bars &amp; Venues</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Selos próprios Brazillian Party e Báilame em praças americanas.">
-                    <span class="spec-item__label">Selos Próprios</span>
-                    <span class="spec-item__val">Brazillian Party &amp; Báilame</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Dallas, Austin, Houston, San Antonio e projetos no Brasil.">
-                    <span class="spec-item__label">Praças</span>
-                    <span class="spec-item__val">Dallas, Austin &amp; Houston</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <div class="sector-readout">
-                  <span class="sector-readout__tag" aria-hidden="true">01 / Escala</span>
-                  <p class="sector-detail" aria-live="polite">
-                    150+ eventos produzidos e 70.000+ pessoas entre Texas e Brasil.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Panel 3: Hospitalidade & Resort -->
-            <div class="sector-panel" id="panel-hospitalidade" data-unit="hospitalidade" role="tabpanel" aria-labelledby="tab-hospitalidade" hidden>
-              <div class="sector-panel__info" data-index="03">
-                <div class="sector-panel__meta">
-                  <span class="sector-panel__code">03 · BORA BEACH</span>
-                </div>
-                <h3 class="sector-panel__title">Resort &amp; lazer frente ao mar</h3>
-                <p class="sector-panel__text">
-                  Complexo à beira-mar com hospedagem, beach club, gastronomia e varejo.
-                </p>
-              </div>
-              <div class="sector-panel__divider" aria-hidden="true"></div>
-              <div class="sector-grid">
-                <div class="sector-specs" role="group" aria-label="Áreas atendidas em Hospitalidade">
-                  <button type="button" class="spec-card is-focused" data-detail="Terreno de ~5.000 m² em Ilhéus com início operacional em 2026.">
-                    <span class="spec-item__label">Hospedagem</span>
-                    <span class="spec-item__val">50+ Suítes · ~5.000 m²</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Piscina central de ~50m e Beach Club com programação na areia.">
-                    <span class="spec-item__label">Lazer</span>
-                    <span class="spec-item__val">Piscina 50m &amp; Beach Club</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Restaurante panorâmico (+100 lugares) e +10 pontos comerciais.">
-                    <span class="spec-item__label">Gastronomia &amp; Varejo</span>
-                    <span class="spec-item__val">Restaurante &amp; +10 Lojas</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Costa do Cacau, litoral sul de Ilhéus, Bahia (Est 2026).">
-                    <span class="spec-item__label">Localização</span>
-                    <span class="spec-item__val">Ilhéus, BA · Est 2026</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <div class="sector-readout">
-                  <span class="sector-readout__tag" aria-hidden="true">01 / Hospedagem</span>
-                  <p class="sector-detail" aria-live="polite">
-                    Terreno de ~5.000 m² em Ilhéus com início operacional em 2026.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Panel 4: Locação & Short Stay -->
-            <div class="sector-panel" id="panel-locacao" data-unit="locacao" role="tabpanel" aria-labelledby="tab-locacao" hidden>
-              <div class="sector-panel__info" data-index="04">
-                <div class="sector-panel__meta">
-                  <span class="sector-panel__code">04 · VYVA HOMES</span>
-                </div>
-                <h3 class="sector-panel__title">Gestão de short &amp; mid-stay</h3>
-                <p class="sector-panel__text">
-                  Operação completa de imóveis residenciais para curta e média temporada.
-                </p>
-              </div>
-              <div class="sector-panel__divider" aria-hidden="true"></div>
-              <div class="sector-grid">
-                <div class="sector-specs" role="group" aria-label="Áreas atendidas em Locação e Short Stay">
-                  <button type="button" class="spec-card is-focused" data-detail="Do setup e precificação à limpeza, enxoval e repasse ao proprietário.">
-                    <span class="spec-item__label">Público</span>
-                    <span class="spec-item__val">Proprietários &amp; Investidores</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Anúncios integrados em Airbnb, Booking e canais diretos.">
-                    <span class="spec-item__label">Canais</span>
-                    <span class="spec-item__val">Airbnb, Booking &amp; Direto</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Tarifas dinâmicas, check-in digital, governança e preventiva.">
-                    <span class="spec-item__label">Operação</span>
-                    <span class="spec-item__val">Tarifas, Enxoval &amp; Limpeza</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Atuação em São Paulo e mercados estratégicos desde 2024.">
-                    <span class="spec-item__label">Atuação</span>
-                    <span class="spec-item__val">São Paulo &amp; BR · Est 2024</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <div class="sector-readout">
-                  <span class="sector-readout__tag" aria-hidden="true">01 / Público</span>
-                  <p class="sector-detail" aria-live="polite">
-                    Do setup e precificação à limpeza, enxoval e repasse ao proprietário.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Panel 5: Manutenção & Facilities -->
-            <div class="sector-panel" id="panel-manutencao" data-unit="manutencao" role="tabpanel" aria-labelledby="tab-manutencao" hidden>
-              <div class="sector-panel__info" data-index="05">
-                <div class="sector-panel__meta">
-                  <span class="sector-panel__code">05 · PHP GENERAL SERVICES</span>
-                </div>
-                <h3 class="sector-panel__title">Reparos, turnover &amp; logística</h3>
-                <p class="sector-panel__text">
-                  Manutenção predial, preparação entre locações e entregas técnicas nos EUA.
-                </p>
-              </div>
-              <div class="sector-panel__divider" aria-hidden="true"></div>
-              <div class="sector-grid">
-                <div class="sector-specs" role="group" aria-label="Áreas atendidas em Manutenção e Facilities">
-                  <button type="button" class="spec-card is-focused" data-detail="+21.217 ordens de serviço em 1.000+ imóveis e 256+ clientes ativos.">
-                    <span class="spec-item__label">Volume</span>
-                    <span class="spec-item__val">+21.217 OS · 1.000+ Imóveis</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Manutenção preventiva e corretiva, pintura, reparos e turnover.">
-                    <span class="spec-item__label">Campo</span>
-                    <span class="spec-item__val">Turnover, Pintura &amp; Reparos</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Caminhões próprios para entregas white-glove e montagem nos EUA.">
-                    <span class="spec-item__label">Logística</span>
-                    <span class="spec-item__val">White-Glove &amp; Frota</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                  <button type="button" class="spec-card" data-detail="Base em Plano (DFW, Texas) atendendo empresas e residências desde 2021.">
-                    <span class="spec-item__label">Base</span>
-                    <span class="spec-item__val">Plano / DFW · Est 2021</span>
-                    <span class="spec-card__line" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <div class="sector-readout">
-                  <span class="sector-readout__tag" aria-hidden="true">01 / Volume</span>
-                  <p class="sector-detail" aria-live="polite">
-                    +21.217 ordens de serviço em 1.000+ imóveis e 256+ clientes ativos.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Destaque: Escopo da Holding -->
-    <section class="section-view feature-split" id="nosso-proposito">
-      <div class="container">
+        <div class="feature-split__cards">
+        <!-- Destaque 1: Real Estate -->
         <div class="feature-card">
           <span class="feature-card__corner feature-card__corner--tl" aria-hidden="true"></span>
           <span class="feature-card__corner feature-card__corner--tr" aria-hidden="true"></span>
@@ -865,8 +279,8 @@
           <div class="feature-card__media">
             <div class="feature-card__media-inner">
               <img
-                src="images/Frame-1.avif"
-                alt="Escopo de Atuação — Grupo VYVA"
+                src="images/Card-Real-Este.png"
+                alt="Construindo valor no mercado imobiliário — Real Estate"
                 class="feature-card__parallax-media"
                 loading="lazy"
               >
@@ -880,34 +294,20 @@
           <div class="feature-card__content">
             <div class="feature-card__body">
               <div class="feature-card__eyebrow">
-                <span class="feature-card__index">01</span>
-                <span class="feature-card__subtitle">ESCOPO DA HOLDING</span>
+                <span class="feature-card__subtitle">Real Estate</span>
               </div>
               <h2 class="feature-card__title">
-                Cinco verticais. <span class="feature-card__accent">Um grupo</span>.
+                Construindo valor no mercado imobiliário.
               </h2>
               <p class="feature-card__text">
-                Cada empresa opera em uma etapa complementar entre atração de público, hospedagem e conservação física dos espaços.
+                Com origem na PHP General Services, nossa atuação reúne serviços ligados à construção civil e ao mercado residencial, integrando conservação, limpeza, preparação de imóveis e suporte operacional.  Hoje, essa trajetória também se expressa no desenvolvimento e estruturação de projetos imobiliários próprios.
               </p>
-              <p class="feature-card__pillars">
-                Marketing e estratégia de marca.<br>
-                Experiências locais e entretenimento.<br>
-                Hospitalidade, short stay e locação.<br>
-                Manutenção, facilities e turnover.
-              </p>
-            </div>
-            <div class="feature-card__footer">
-              <a href="contact.html" class="link-rainbow">Falar com o grupo</a>
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Destaque: Entretenimento & Venues (Texas) -->
-    <section class="section-view feature-split feature-split--reverse" id="vip-strategy-intro">
-      <div class="container">
-        <div class="feature-card">
+        <!-- Destaque 2: Hospitality -->
+        <div class="feature-card feature-card--reverse">
           <span class="feature-card__corner feature-card__corner--tl" aria-hidden="true"></span>
           <span class="feature-card__corner feature-card__corner--tr" aria-hidden="true"></span>
           <span class="feature-card__corner feature-card__corner--bl" aria-hidden="true"></span>
@@ -916,18 +316,14 @@
           <div class="feature-card__content">
             <div class="feature-card__body">
               <div class="feature-card__eyebrow">
-                <span class="feature-card__index">02</span>
-                <span class="feature-card__subtitle">TEXAS • ENTRETENIMENTO &amp; VENUES</span>
+                <span class="feature-card__subtitle">Hospitality</span>
               </div>
               <h2 class="feature-card__title">
-                Público ativo em <span class="feature-card__accent">casas e marcas</span> no Texas
+                Cuidado, gestão e excelência operacional.
               </h2>
               <p class="feature-card__text">
-                A frente americana de experiências conecta restaurantes, live music venues, sports bars e nightclubs ao público latino e brasileiro em Dallas, Austin, Houston e San Antonio.
+                A VYVA Homes integra gestão imobiliária e hospitalidade na administração de imóveis de curta e média duração. Nossa atuação conecta operação, estratégia comercial e atendimento ao hospede, buscando mesclar a valorização do patrimônio com o desempenho das hospedagens.
               </p>
-            </div>
-            <div class="feature-card__footer">
-              <a href="vipstrategy.html" class="link-rainbow">Ver projetos no Texas</a>
             </div>
           </div>
 
@@ -937,25 +333,189 @@
 
           <div class="feature-card__media">
             <div class="feature-card__media-inner">
-              <video
+              <img
+                src="images/Card-hospitality.png"
+                alt="Cuidado, gestão e excelência operacional — Hospitality"
                 class="feature-card__parallax-media"
-                data-autoplay="true"
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                poster="videos/VIPStrategy-brazillian_poster.0000000.avif"
+                loading="lazy"
               >
-                <source src="videos/VIPStrategy-brazillian_webm.webm" type="video/webm">
-              </video>
             </div>
           </div>
+        </div>
+
+        <!-- Destaque 3: Experiences -->
+        <div class="feature-card">
+          <span class="feature-card__corner feature-card__corner--tl" aria-hidden="true"></span>
+          <span class="feature-card__corner feature-card__corner--tr" aria-hidden="true"></span>
+          <span class="feature-card__corner feature-card__corner--bl" aria-hidden="true"></span>
+          <span class="feature-card__corner feature-card__corner--br" aria-hidden="true"></span>
+
+          <div class="feature-card__media">
+            <div class="feature-card__media-inner">
+              <img
+                src="images/Card-VipStrategy.png"
+                alt="Criando conexões que movimentam negócios — Experiences"
+                class="feature-card__parallax-media"
+                loading="lazy"
+              >
+            </div>
+          </div>
+
+          <div class="feature-card__divider" aria-hidden="true">
+            <span class="feature-card__divider-node"></span>
+          </div>
+
+          <div class="feature-card__content">
+            <div class="feature-card__body">
+              <div class="feature-card__eyebrow">
+                <span class="feature-card__subtitle">Experiences</span>
+              </div>
+              <h2 class="feature-card__title">
+                Criando conexões que movimentam negócios.
+              </h2>
+              <p class="feature-card__text">
+                Por meio da VIP Strategy, desenvolvemos estratégias de posicionamento, marketing e eventos que conectam marcas e o público, fortalecendo negócios e impulsionando a geração de demanda nos setores de hospitalidade, entretenimento e gastronomia.
+              </p>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </section>
 
-    <!-- Galeria 3D -->
-    <section class="section-view carousel-3d-section" id="galeria-3d" aria-roledescription="carousel" aria-label="Galeria em 3D Vyva">
+    <!-- Ecossistema de Empresas (Swipe Slider Tela Cheia) -->
+    <section id="ecossistema" class="section-view eco-swipe-section" aria-roledescription="carousel" aria-label="Principais Empresas VYVA">
+      <div class="eco-swipe__nav-wrap">
+        <div class="eco-swipe__badge section-header__tag">Principais Empresas</div>
+      </div>
+
+      <div class="eco-swipe__container" id="ecoSwipeContainer">
+        <!-- Slide 1: Real Estate — PHP General Service -->
+        <article class="eco-swipe__slide is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="1 de 3: PHP General Service">
+          <div class="eco-swipe__outer">
+            <div class="eco-swipe__inner">
+              <div class="eco-swipe__bg">
+                <img src="images/PHP-capa.avif" alt="PHP General Service — Operação e manutenção imobiliária" class="eco-swipe__bg-img" decoding="async">
+                <div class="eco-swipe__overlay" aria-hidden="true"></div>
+                <div class="eco-swipe__content">
+                  <span class="eco-swipe__pillar">Real Estate</span>
+                  <h2 class="eco-swipe__title">PHP General Service</h2>
+                  <div class="eco-swipe__stats eco-swipe__stats--4">
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Operando desde</span>
+                      <strong class="eco-swipe__stat-value">2019</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Cidades</span>
+                      <strong class="eco-swipe__stat-value">15+</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Atendimentos</span>
+                      <strong class="eco-swipe__stat-value">21.217+</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Países</span>
+                      <strong class="eco-swipe__stat-value">2</strong>
+                    </div>
+                  </div>
+                  <div class="eco-swipe__divider" aria-hidden="true"></div>
+                  <a href="php-general-services.html" class="link-rainbow eco-swipe__cta">Conhecer</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2: Hospitality — VYVA Homes -->
+        <article class="eco-swipe__slide" data-index="1" role="group" aria-roledescription="slide" aria-label="2 de 3: VYVA Homes">
+          <div class="eco-swipe__outer">
+            <div class="eco-swipe__inner">
+              <div class="eco-swipe__bg">
+                <img src="images/connect.png" alt="VYVA Homes — Hospitalidade e short stay" class="eco-swipe__bg-img" loading="lazy" decoding="async">
+                <div class="eco-swipe__overlay" aria-hidden="true"></div>
+                <div class="eco-swipe__content">
+                  <span class="eco-swipe__pillar">Hospitality</span>
+                  <h2 class="eco-swipe__title">VYVA Homes</h2>
+                  <div class="eco-swipe__stats">
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Operando desde</span>
+                      <strong class="eco-swipe__stat-value">2020</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Cidades</span>
+                      <strong class="eco-swipe__stat-value">15+</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Imóveis</span>
+                      <strong class="eco-swipe__stat-value">1000+</strong>
+                    </div>
+                  </div>
+                  <div class="eco-swipe__divider" aria-hidden="true"></div>
+                  <a href="vyva-homes.html" class="link-rainbow eco-swipe__cta">Conhecer</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 3: Experiences — VIP Strategy -->
+        <article class="eco-swipe__slide" data-index="2" role="group" aria-roledescription="slide" aria-label="3 de 3: VIP Strategy">
+          <div class="eco-swipe__outer">
+            <div class="eco-swipe__inner">
+              <div class="eco-swipe__bg">
+                <img src="images/brazilian-party04.avif" alt="VIP Strategy — Marketing, eventos e experiências" class="eco-swipe__bg-img" loading="lazy" decoding="async">
+                <div class="eco-swipe__overlay" aria-hidden="true"></div>
+                <div class="eco-swipe__content">
+                  <span class="eco-swipe__pillar">Experiences</span>
+                  <h2 class="eco-swipe__title">VIP Strategy</h2>
+                  <div class="eco-swipe__stats">
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Operando desde</span>
+                      <strong class="eco-swipe__stat-value">2023</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Eventos produzidos</span>
+                      <strong class="eco-swipe__stat-value">150+</strong>
+                    </div>
+                    <div class="eco-swipe__stat">
+                      <span class="eco-swipe__stat-label">Pessoas impactadas</span>
+                      <strong class="eco-swipe__stat-value">70.000+</strong>
+                    </div>
+                  </div>
+                  <div class="eco-swipe__divider" aria-hidden="true"></div>
+                  <a href="vipstrategy.html" class="link-rainbow eco-swipe__cta">Conhecer</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <button type="button" class="eco-swipe__arrow eco-swipe__arrow--prev" aria-label="Empresa anterior">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 19 8 12 15 5"></polyline>
+        </svg>
+      </button>
+      <button type="button" class="eco-swipe__arrow eco-swipe__arrow--next" aria-label="Próxima empresa">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 5 16 12 9 19"></polyline>
+        </svg>
+      </button>
+
+      <div class="eco-swipe__bottom">
+        <div class="eco-swipe__counter" aria-hidden="true">
+          <span class="eco-swipe__counter-current">01</span>
+          <span class="eco-swipe__counter-divider">/</span>
+          <span class="eco-swipe__counter-total">03</span>
+        </div>
+      </div>
+
+      <div class="visually-hidden" role="status" aria-live="polite" id="ecoSwipeStatus"></div>
+    </section>
+
+
+    <!-- Galeria 3D (oculta) -->
+    <section class="section-view carousel-3d-section" id="galeria-3d" hidden aria-roledescription="carousel" aria-label="Galeria em 3D Vyva">
       <div class="container">
         <header class="section-header carousel-3d__header">
           <h2 class="section-title" aria-label="Experiências novas. Momentos únicos. Noites Memoráveis. Lugares a recordar.">
@@ -996,16 +556,7 @@
       </div>
     </section>
 
-    <!-- Manifesto -->
-    <section class="section-view">
-      <div class="container">
-        <div class="manifesto-block">
-          <blockquote class="manifesto-quote">
-            Marketing, experiências locais, hospitalidade, short stay e manutenção. Cinco operações em dois países.
-          </blockquote>
-        </div>
-      </div>
-    </section>
+    
 
     <!-- Carrossel de Destinos -->
     <section class="section-view destinos-wheel" id="destinos" aria-roledescription="carousel" aria-label="Destinos VYVA">
@@ -1298,36 +849,231 @@
       </div>
     </section>
 
-    <!-- Bases de Operação -->
+    <!-- Vídeo Institucional: Nossa Trajetória -->
+    <section class="section-view trajectory-section" id="nossa-trajetoria" aria-label="Conheça nossa trajetória">
+      <div class="container">
+        <header class="section-header trajectory-section__header">
+          <span class="section-header__tag">Tudo tem um começo</span>
+          <h2 class="section-title">Conheça nossa trajetória</h2>
+        </header>
+
+        <div class="trajectory-video-card lighting-border" id="trajectoryVideoCard" data-youtube-id="IXxxxcrm32Y">
+          <div class="trajectory-video-card__media">
+            <img
+              src="https://i.ytimg.com/vi/IXxxxcrm32Y/maxresdefault.jpg"
+              onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/IXxxxcrm32Y/hqdefault.jpg';"
+              alt="Vídeo institucional VYVA — Conheça nossa trajetória"
+              class="trajectory-video-card__thumb"
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="trajectory-video-card__overlay" aria-hidden="true"></div>
+          </div>
+
+          <button
+            type="button"
+            id="trajectoryWatchBtn"
+            class="btn-roll btn-roll--outline trajectory-video-card__btn"
+            command="show-modal"
+            commandfor="trajectoryVideoDialog"
+            aria-label="Assistir vídeo institucional sobre nossa trajetória"
+          >
+            <span class="btn-roll__inner">
+              <span class="btn-roll__text">Assistir</span>
+              <span class="btn-roll__text btn-roll__text--clone" aria-hidden="true">Assistir</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manifesto / Transição para Bora Beach -->
     <section class="section-view">
       <div class="container">
+        <div class="manifesto-block">
+          <blockquote class="manifesto-quote">
+            Nossa história está prestes a ganhar um novo destino no nordeste do Brasil.<br>
+            Em breve: um encontro entre Real Estate, Hospitality e Experiences.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vitrine em Vídeo: Bora Beach -->
+    <section id="vitrine-videos" class="video-showcase">
+      <div class="video-showcase__grid">
+        <div class="video-box">
+          <div class="left-corner">
+            <div class="corner-fill"></div>
+            <div class="corner-fill horizontal"></div>
+          </div>
+          <div class="left-corner bottom">
+            <div class="corner-fill bottom"></div>
+            <div class="corner-fill horizontal bottom"></div>
+          </div>
+          <div class="left-corner bottom-right">
+            <div class="corner-fill bottom-right"></div>
+            <div class="corner-fill horizontal bottom-right"></div>
+          </div>
+          <div class="left-corner right">
+            <div class="corner-fill right"></div>
+            <div class="corner-fill horizontal right"></div>
+          </div>
+          <div class="showcase-intro showcase-intro--compact">
+            <div class="showcase-intro__inner">
+              <div class="stacked-heading centered">
+                <div class="subtitle-intro">
+                  <div class="subtitle-line left">
+                    <div class="solid-subtitle-line"></div>
+                  </div>
+                  <div class="showcase-subtitle">ILHÉUS, BAHIA</div>
+                  <div class="subtitle-line">
+                    <div class="solid-subtitle-line"></div>
+                  </div>
+                </div>
+                <h1 class="showcase-intro__title">Bora Beach</h1>
+              </div>
+              <div class="showcase-intro__desc-wrap">
+                <div class="showcase-intro__desc">Mais de 129 unidade | 8.788m² de área construída | 812m² de Bora Wellness Club</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-poster-url="videos/background-bora-beach_poster.0000000.avif" data-video-urls="videos/background-bora-beach_webm.webm" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="showcase-video-bg">
+        <video id="boraBeachShowcaseVideo" class="loop-video" data-autoplay="true" loop muted playsinline preload="metadata" poster="videos/background-bora-beach_poster.0000000.avif" style="background-image:url('videos/background-bora-beach_poster.0000000.avif')" data-wf-ignore="true" data-object-fit="cover">
+          <source src="videos/background-bora-beach_webm.webm" type="video/webm" data-wf-ignore="true">
+        </video>
+        <div class="showcase-overlay showcase-overlay--gradient"></div>
+      </div>
+      <div class="video-bottom">
+        <div class="video-meta">
+          <div class="video-plus">
+            <div class="plus-line"></div>
+            <div class="plus-line plus-line--vertical"></div>
+          </div>
+          <a href="bora-beach.html" class="underline-hover-link showcase-link--project w-inline-block">
+            <div class="showcase-subtitle">conheça o projeto</div>
+            <div class="hover-line light">
+              <div class="hover-line-fill light"></div>
+            </div>
+          </a>
+          <a href="contact.html" class="underline-hover-link showcase-link--contact w-inline-block">
+            <div class="showcase-subtitle">Saiba mais aqui</div>
+            <div class="hover-line">
+              <div class="hover-line-fill light"></div>
+            </div>
+          </a>
+        </div>
+        <div class="vertical-line--offset"></div>
+      </div>
+      <div class="section-cover"></div>
+    </section>
+
+    <!-- Faixa Contínua Bora Beach -->
+    <section class="ticker-strip ticker-strip--bora" aria-hidden="true">
+      <div class="ticker-strip__track">
+        <span class="ticker-strip__item">Wellness</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Gastronomia</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Short Stay</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Experiência</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Wellness</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Gastronomia</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Short Stay</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Experiência</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Wellness</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Gastronomia</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Short Stay</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Experiência</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Wellness</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Gastronomia</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Short Stay</span>
+        <span class="ticker-strip__sep">•</span>
+        <span class="ticker-strip__item">Experiência</span>
+        <span class="ticker-strip__sep">•</span>
+      </div>
+    </section>
+
+    <!-- Carrossel Contínuo Reverso: Fotos Bora Beach -->
+    <section class="bora-marquee" id="bora-galeria" aria-label="Galeria de fotos Bora Beach">
+      <div class="bora-marquee__track">
+        <figure class="bora-marquee__item">
+          <img src="images/BORA-BEACH-09.avif" alt="Área Interna Bora Beach" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item">
+          <img src="images/BORA-BEACH-08.avif" alt="Frente ao mar Bora Beach" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item">
+          <img src="images/BORA-BEACH-04.avif" alt="Conforto e Wellness Bora Beach" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item">
+          <img src="images/BORA-BEACH-10.avif" alt="Natureza Bora Beach" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item">
+          <img src="images/frente-1.avif" alt="Recepção Bora Beach" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item">
+          <img src="images/bora-beach-restaurant.avif" alt="Gastronomia Bora Beach" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+
+        <!-- Duplicata para loop contínuo simétrico (-50% -> 0) -->
+        <figure class="bora-marquee__item bora-marquee__item--clone" aria-hidden="true">
+          <img src="images/BORA-BEACH-09.avif" alt="" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item bora-marquee__item--clone" aria-hidden="true">
+          <img src="images/BORA-BEACH-08.avif" alt="" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item bora-marquee__item--clone" aria-hidden="true">
+          <img src="images/BORA-BEACH-04.avif" alt="" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item bora-marquee__item--clone" aria-hidden="true">
+          <img src="images/BORA-BEACH-10.avif" alt="" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item bora-marquee__item--clone" aria-hidden="true">
+          <img src="images/frente-1.avif" alt="" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+        <figure class="bora-marquee__item bora-marquee__item--clone" aria-hidden="true">
+          <img src="images/bora-beach-restaurant.avif" alt="" class="bora-marquee__img" draggable="false" loading="lazy" decoding="async">
+        </figure>
+      </div>
+    </section>
+
+    <!-- Nossos Escritórios -->
+    <section class="section-view" id="escritorios" aria-label="Nossos Escritórios">
+      <div class="container">
         <header class="section-header">
-          <h2 class="section-title">Bases de operação.</h2>
-          <p class="section-desc">
-            Escritórios e frentes em operação nos Estados Unidos e no Brasil.
-          </p>
+          <h2 class="section-title">Nossos Escritórios</h2>
         </header>
 
         <div class="locations-grid">
           <div class="location-item">
-            <div class="location-item__region">BRASIL • MATRIZ</div>
-            <h3 class="location-item__city">São Paulo</h3>
-            <p class="location-item__role">Av. Brig. Faria Lima • Sede do grupo e operação Vyva Homes.</p>
+            <div class="location-item__region">EUA - Texas</div>
+            <h3 class="location-item__city">Plano</h3>
+            <p class="location-item__role">5716 Henry Cook Blvd #11207<br>Plano, TX 75024<br>United States</p>
           </div>
           <div class="location-item">
-            <div class="location-item__region">EUA • TEXAS</div>
-            <h3 class="location-item__city">Plano &amp; DFW</h3>
-            <p class="location-item__role">PHP General Services • Manutenção predial, turnover e logística nos EUA.</p>
-          </div>
-          <div class="location-item">
-            <div class="location-item__region">EUA • TEXAS</div>
-            <h3 class="location-item__city">Austin, Houston &amp; San Antonio</h3>
-            <p class="location-item__role">VIP Strategy • Marketing, venues e eventos proprietários.</p>
-          </div>
-          <div class="location-item">
-            <div class="location-item__region">BRASIL • BAHIA</div>
+            <div class="location-item__region">Brasil - BA</div>
             <h3 class="location-item__city">Ilhéus</h3>
-            <p class="location-item__role">Costa do Cacau • Bora Beach Resort &amp; Short Stay (Est 2026).</p>
+            <p class="location-item__role">Avenida Soares Lopes, nº 996<br>Ed. Empresarial Marina, SALA 02, térreo<br>Cidade Nova, Ilhéus/BA, CEP 45.652-065</p>
+          </div>
+          <div class="location-item">
+            <div class="location-item__region">Brasil - SP</div>
+            <h3 class="location-item__city">São Paulo</h3>
+            <p class="location-item__role">Rua dos Pinheiros, 498<br>Pinheiros – São Paulo/SP<br>CEP 05422-902</p>
           </div>
         </div>
       </div>
@@ -1344,7 +1090,7 @@
             <img src="images/vyva-logo.svg" alt="VYVA" class="footer__logo-img">
           </a>
           <p class="footer__tagline">
-            Holding de marketing, experiências locais, hospitalidade, short stay e manutenção operacional nos Estados Unidos e no Brasil.
+            Da operação imobiliária à criação de destinos. Unimos Real Estate, Hospitality e Experiences para desenvolver e operar ativos com visão de longo prazo.
           </p>
         </div>
 
@@ -1367,11 +1113,11 @@
         </div>
 
         <div>
-          <h4 class="footer__col-title">Escritórios</h4>
-          <p class="footer__office-text">
-            <strong>São Paulo:</strong> Av. Brig. Faria Lima<br>
-            <strong>Texas:</strong> Plano, Dallas-Fort Worth
-          </p>
+          <h4 class="footer__col-title">Contato</h4>
+          <ul class="footer__nav-list" style="margin-bottom: 24px;">
+            <li><a href="mailto:Comercial@vyvaoficial.com" class="footer__nav-link">Comercial@vyvaoficial.com</a></li>
+            <li><a href="https://api.whatsapp.com/send/?phone=5573998130646&amp;text=Ola%2C+vim+pelo+site+e+gostaria+de+tirar+algumas+d%C3%BAvidas.&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener noreferrer" class="footer__nav-link">Whatsapp</a></li>
+          </ul>
           <a href="contact.html" class="btn-roll btn-roll--primary button-lighting">
             <span class="btn-roll__inner">
               <span class="btn-roll__text">Fale Conosco</span>
@@ -1425,6 +1171,20 @@
       </svg>
     </button>
   </div>
+
+  <!-- Modal de Vídeo Institucional -->
+  <dialog id="trajectoryVideoDialog" class="video-modal-dialog" closedby="any" aria-labelledby="trajectoryDialogTitle">
+    <h1 id="trajectoryDialogTitle" class="visually-hidden">Conheça nossa trajetória — Vídeo Institucional VYVA</h1>
+    <form method="dialog" class="video-modal-header">
+      <button type="submit" class="video-modal-close" autofocus aria-label="Fechar vídeo">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </form>
+    <div class="video-modal-frame-wrap" id="trajectoryVideoFrameWrap"></div>
+  </dialog>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
